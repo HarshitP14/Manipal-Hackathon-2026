@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --primary: #3F2A96;
+  --primary-light: #5B43BC;
+  --primary-subtle: #EEECFB;
+  --accent-cyan: #1497B8;
+  --accent-cyan-subtle: #E3F8FC;
+  --accent-violet: #7C3AED;
+  --text-dark: #172033;
+  --text-muted: #596579;
+  --text-dim: #8B98AD;
+  --surface: #FFFFFF;
+  --surface-alt: #F4F6FA;
+  --surface-subtle: #EDF1F7;
+  --border-light: #E2E8F0;
+  --border-subtle: #EDF2F7;
+  --ring-color: rgba(63, 42, 150, 0.25);
+  
+  /* Risk Semantic Palettes */
+  --risk-low: #059669;
+  --risk-low-bg: #ECFDF5;
+  --risk-mod: #D97706;
+  --risk-mod-bg: #FFFBEB;
+  --risk-elevated: #E11D48;
+  --risk-elevated-bg: #FFF1F2;
+  --risk-high: #9333EA;
+  --risk-high-bg: #FAF5FF;
+
+  /* Claymorphic Shadows */
+  --clay-shadow: 6px 6px 16px rgba(166, 175, 195, 0.35), -6px -6px 16px rgba(255, 255, 255, 0.9);
+  --clay-inset: inset 2px 2px 5px rgba(255, 255, 255, 0.7), inset -2px -2px 5px rgba(166, 175, 195, 0.25);
+  --clay-card: 0 10px 25px -5px rgba(63, 42, 150, 0.08), 0 8px 10px -6px rgba(63, 42, 150, 0.04);
+}
+
+[data-theme="dark"] {
+  --text-dark: #F8FAFC;
+  --text-muted: #94A3B8;
+  --text-dim: #64748B;
+  --surface: #0F172A;
+  --surface-alt: #1E293B;
+  --surface-subtle: #162032;
+  --border-light: #334155;
+  --border-subtle: #1E293B;
+  --primary-subtle: rgba(63, 42, 150, 0.25);
+  --accent-cyan-subtle: rgba(20, 151, 184, 0.2);
+  --clay-shadow: 6px 6px 16px rgba(0, 0, 0, 0.45), -4px -4px 12px rgba(255, 255, 255, 0.04);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text-dark);
+  background-color: var(--surface-alt);
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+code, kbd, pre, .mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-dim);
+}
+
+/* Restrained Claymorphism Utilities */
+.clay-box {
+  background: var(--surface);
+  border-radius: 16px;
+  box-shadow: var(--clay-shadow);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.clay-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 8px 8px 20px rgba(166, 175, 195, 0.45), -8px -8px 20px rgba(255, 255, 255, 0.95);
+}
+
+.clay-button-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  color: white;
+  border-radius: 12px;
+  padding: 10px 20px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(63, 42, 150, 0.35);
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.clay-button-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(63, 42, 150, 0.45);
+}
+
+.clay-score-card {
+  background: linear-gradient(145deg, var(--surface) 0%, var(--surface-alt) 100%);
+  border-radius: 20px;
+  box-shadow: var(--clay-shadow);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  padding: 20px;
+}
+
+/* Base App Shell Layout */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.sidebar-rail {
+  width: 260px;
+  background: var(--surface);
+  border-right: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  z-index: 20;
+}
+
+.main-viewport {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.topbar {
+  height: 64px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.page-content {
+  flex: 1;
+  padding: 24px;
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.pulse-glow {
+  animation: pulseGlow 2s infinite ease-in-out;
+}
